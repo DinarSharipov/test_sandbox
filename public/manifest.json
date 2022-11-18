@@ -1,0 +1,28 @@
+{
+  "name": "NEW BROWS EXT",
+  "description": "Adds button that allows to transform Swagger schema to typescript interface",
+  "version": "1.2",
+  "manifest_version": 3,
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "index.js"
+      ],
+      "css": [
+        "style.css"
+      ]
+    }
+  ]
+}
