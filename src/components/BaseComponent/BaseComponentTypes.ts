@@ -4,4 +4,5 @@ export interface BaseComponentProps {
   tag?: keyof HTMLElementTagNameMap;
   element?: HTMLElement;
   elements?: HTMLElement[];
+
 }
