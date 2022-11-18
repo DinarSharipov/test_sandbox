@@ -3,48 +3,48 @@ const miniCss = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: {
-     index: path.resolve(__dirname, "..", "src", "index.tsx"),
+    index: path.resolve(__dirname, '..', 'src', 'index.ts'),
   },
   resolve: {
-     extensions: [".ts", ".js"],
+    extensions: ['.ts', '.js'],
   },
   module: {
-     rules: [
-        {
-           test: /\.tsx?$/,
-           loader: "ts-loader",
-           exclude: /node_modules/,
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(s*)css$/,
+        use: [
+          miniCss.loader,
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
         },
-        {
-          test:/\.(s*)css$/,
-          use: [
-             miniCss.loader,
-             'css-loader',
-             'sass-loader',
-          ]
-       },
-       {
-         test: /\.js$/,
-         exclude: /node_modules/,
-         use: {
-             loader: "babel-loader"
-         }
-     },
-     ],
+      },
+    ],
   },
   plugins: [
-   new HtmlWebpackPlugin({ template: './src/index.html' }),
-   new miniCss({
+    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new miniCss({
       filename: 'style.css',
-   }),
+    }),
   ],
- devServer: {
+  devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
     },
     compress: true,
     port: 9000,
   },
-}
+};
