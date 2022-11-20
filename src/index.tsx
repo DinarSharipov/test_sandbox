@@ -1,17 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 
-const root = document.createElement('div');
-root.id = 'root';
-
-document.body.insertAdjacentElement('afterbegin', root);
-
-const createdRoot = ReactDOM.createRoot(
-  root as HTMLElement,
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement,
 );
-createdRoot.render(
+root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
