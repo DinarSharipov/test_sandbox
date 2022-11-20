@@ -18,10 +18,7 @@
         "<all_urls>"
       ],
       "js": [
-        "index.js"
-      ],
-      "css": [
-        "style.css"
+        "./static/js/index.js"
       ]
     }
   ]
