@@ -34,6 +34,6 @@
   "dependencies": {
     "html-webpack-plugin": "^5.5.0",
     "webpack-dev-server": "^4.11.1",
-    "mini-css-extract-plugin": "^2.7.0",
+    "mini-css-extract-plugin": "^2.7.0"
   }
 }
