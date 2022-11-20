@@ -1,6 +1,3 @@
-import Button from './components/button/Button';
-import Input from './components/input/Input';
-import ToolBar from './components/toolbar/ToolBar';
 import './styles/style.scss';
 
 class Application {
@@ -35,22 +32,5 @@ class Application {
 }
 
 const app = new Application();
-
-app.changeChildren = new ToolBar({
-  elements: [
-    new Button({
-      text: 'Добавить ода',
-      class: 'testBtn',
-      onClick: () => {
-        app.addChildren(new Input({
-          placeholder: 'введите',
-        }).node);
-      },
-    }).node,
-    new Button({ text: 'КНОПКА 2', class: 'testBtn', onClick: () => alert('2') }).node,
-  ],
-  tag: 'div',
-  class: 'toolbar',
-}).render();
 
 app.render();
