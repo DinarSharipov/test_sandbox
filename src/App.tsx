@@ -1,13 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const BgRed = styled.div`
-  background-color: red;
-`;
+import Toolbar from './components/ui/blocks/Toolbar';
 
 const App = () => (
   <div className="App">
-    <BgRed>111</BgRed>
+    <Toolbar />
   </div>
 );
 
