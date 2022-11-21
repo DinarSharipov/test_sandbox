@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { HorizontalAlign, Space } from '../../../flex/enums';
 import Flex from '../../../flex/Flex';
 import Button from '../Button';
+import Select from '../Select';
 
 const MACRO_MIN_HEIGHT = 200;
 const MACRO_MAX_HEIGHT = 600;
@@ -19,16 +20,42 @@ const MacroCreator = styled(Flex.Column)<{macroSize: number}>`
   justify-content: space-between;
 `;
 
+const SearchElementContainer = styled(Flex.Row)`
+  align-self: flex-start;
+`;
+
 const Resizer = styled.div`
   height: 3px;
-  border-style: double;
-  border-bottom: 1px solid grey;
+  border-bottom: 2px solid lightcoral;
   cursor: row-resize;
 `;
 
 const Toolbar: React.FC = () => {
   const [showMacroBlock, setShowMacroBlock] = useState(false);
   const [macroSize, setMacroSize] = useState(MACRO_MIN_HEIGHT);
+  const [searchElementTag, setSearchElementTag] = useState('button');
+  const [selectedItem, setSelectedItem] = useState<Element>();
+
+  const selectItemHandler = (el: Element) => {
+    console.log(el);
+
+    setSelectedItem(el);
+  };
+
+  const searchElementHandler = () => {
+    const items = document.querySelectorAll(searchElementTag);
+    items.forEach((item) => {
+      if (item.classList.contains('ext')) {
+        return;
+      }
+      item.classList.add('ext');
+      const mark = document.createElement('button');
+      mark.classList.add('ext');
+      mark.textContent = 'Найденный элемент';
+      item.appendChild(mark);
+      mark.addEventListener('click', () => selectItemHandler(mark));
+    });
+  };
 
   return (
     <ToolbarWrapper
@@ -52,6 +79,36 @@ const Toolbar: React.FC = () => {
             >
               <Button onClick={() => setShowMacroBlock(false)}>Закрыть</Button>
             </Flex.Row>
+            <Flex.Column>
+              <SearchElementContainer flexInitial>
+                <Select
+                  defaultOption={searchElementTag}
+                  label="Поиск элемента"
+                  onChange={(e) => setSearchElementTag(e)}
+                  options={[
+                    { label: 'Кнопка', value: 'button' },
+                    { label: 'Поле ввода', value: 'input' },
+                  ]}
+                />
+                <Button onClick={searchElementHandler}>Искать</Button>
+                {
+                  selectedItem && (
+                    <Flex.Column>
+                      <span>
+                        ТЭГ:
+                        {' '}
+                        {selectedItem.tagName}
+                      </span>
+                      <span>
+                        ТЕКСТ:
+                        {' '}
+                        {selectedItem.textContent}
+                      </span>
+                    </Flex.Column>
+                  )
+                }
+              </SearchElementContainer>
+            </Flex.Column>
             <Resizer
               onDrag={(e) => {
                 if (e.clientY > MACRO_MIN_HEIGHT && e.clientY < MACRO_MAX_HEIGHT) {

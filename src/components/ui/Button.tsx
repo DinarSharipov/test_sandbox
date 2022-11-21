@@ -24,6 +24,13 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
-}) => <ButtonComponent onClick={onClick}>{children}</ButtonComponent>;
+}) => (
+  <ButtonComponent
+    className="ext"
+    onClick={onClick}
+  >
+    {children}
+  </ButtonComponent>
+);
 
 export default Button;
