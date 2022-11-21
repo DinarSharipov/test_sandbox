@@ -1,18 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { createGlobalStyle } from 'styled-components';
 import App from './App';
 
-const root = document.createElement('div');
-root.id = 'root';
+let root = document.getElementById('extRoot');
 
-document.body.insertAdjacentElement('afterbegin', root);
+if (!root) {
+  root = document.createElement('div');
+  root.id = 'extRoot';
+  document.body.insertAdjacentElement('afterbegin', root);
+}
 
 const createdRoot = ReactDOM.createRoot(
-  root as HTMLElement,
+  root,
 );
+
+const GlobalStyles = createGlobalStyle`
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`;
+
 createdRoot.render(
   <React.StrictMode>
+    <GlobalStyles />
     <App />
   </React.StrictMode>,
 );
