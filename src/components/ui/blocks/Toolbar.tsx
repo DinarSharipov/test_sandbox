@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { HorizontalAlign, Space } from '../../../flex/enums';
 import Flex from '../../../flex/Flex';
 import Button from '../Button';
-import Select from '../Select';
+import Select from '../select/Select';
+import { Option } from '../select/types';
 
 const MACRO_MIN_HEIGHT = 200;
 const MACRO_MAX_HEIGHT = 600;
@@ -33,7 +34,7 @@ const Resizer = styled.div`
 const Toolbar: React.FC = () => {
   const [showMacroBlock, setShowMacroBlock] = useState(false);
   const [macroSize, setMacroSize] = useState(MACRO_MIN_HEIGHT);
-  const [searchElementTag, setSearchElementTag] = useState('button');
+  const [searchElementTag, setSearchElementTag] = useState<Option>({ label: 'Кнопка', value: 'button' });
   const [selectedItem, setSelectedItem] = useState<Element>();
 
   const selectItemHandler = (el: Element) => {
@@ -43,7 +44,7 @@ const Toolbar: React.FC = () => {
   };
 
   const searchElementHandler = () => {
-    const items = document.querySelectorAll(searchElementTag);
+    const items = document.querySelectorAll(searchElementTag.value);
     items.forEach((item) => {
       if (item.classList.contains('ext')) {
         return;
@@ -66,6 +67,7 @@ const Toolbar: React.FC = () => {
         gap={5}
         horizontal={HorizontalAlign.right}
       >
+        <Select />
         <Button onClick={() => setShowMacroBlock(true)}>Создать макрос</Button>
       </Flex.Row>
       {
@@ -82,13 +84,13 @@ const Toolbar: React.FC = () => {
             <Flex.Column>
               <SearchElementContainer flexInitial>
                 <Select
-                  defaultOption={searchElementTag}
                   label="Поиск элемента"
-                  onChange={(e) => setSearchElementTag(e)}
+                  onSelect={(e) => setSearchElementTag(e)}
                   options={[
                     { label: 'Кнопка', value: 'button' },
                     { label: 'Поле ввода', value: 'input' },
                   ]}
+                  selectedOption={searchElementTag}
                 />
                 <Button onClick={searchElementHandler}>Искать</Button>
                 {
