@@ -6,6 +6,7 @@ import Button from '../Button';
 import Select from '../select/Select';
 import { Option } from '../select/types';
 
+/** Максимальная и минимальная высота тулбара */
 const MACRO_MIN_HEIGHT = 200;
 const MACRO_MAX_HEIGHT = 600;
 
