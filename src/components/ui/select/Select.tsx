@@ -35,7 +35,7 @@ const Select: React.FC<SelectProps> = ({
       />
       {showOptions
       && (
-        <SelectStyle.OptionsRelarive>
+        <SelectStyle.OptionsRelative>
           <SelectStyle.OptionsAbsolute ref={optionsRef}>
             {options?.map((option) => (
               <SelectStyle.Option
@@ -46,7 +46,7 @@ const Select: React.FC<SelectProps> = ({
               </SelectStyle.Option>
             ))}
           </SelectStyle.OptionsAbsolute>
-        </SelectStyle.OptionsRelarive>
+        </SelectStyle.OptionsRelative>
       )}
     </SelectStyle.Container>
   );

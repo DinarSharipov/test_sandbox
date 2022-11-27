@@ -7,7 +7,7 @@ const Container = styled(Flex.Column)`
   height: 50px;
 `;
 
-const OptionsRelarive = styled(Flex.Column)`
+const OptionsRelative = styled(Flex.Column)`
   position: relative;
 `;
 
@@ -28,6 +28,6 @@ const Option = styled(Flex.Row)`
 export default {
   Container,
   Option,
-  OptionsRelarive,
+  OptionsRelative,
   OptionsAbsolute,
 };

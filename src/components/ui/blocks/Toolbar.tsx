@@ -6,10 +6,6 @@ import Button from '../Button';
 import Select from '../select/Select';
 import { Option } from '../select/types';
 
-/** Максимальная и минимальная высота тулбара */
-const MACRO_MIN_HEIGHT = 200;
-const MACRO_MAX_HEIGHT = 600;
-
 const ToolbarWrapper = styled(Flex.Column)`
   flex: 1;
   background-color: blanchedalmond;
@@ -17,8 +13,7 @@ const ToolbarWrapper = styled(Flex.Column)`
   justify-content: space-between;
 `;
 
-const MacroCreator = styled(Flex.Column)<{macroSize: number}>`
-  min-height: ${(props) => props.macroSize}px;
+const MacroCreator = styled(Flex.Column)`
   justify-content: space-between;
 `;
 
@@ -26,15 +21,8 @@ const SearchElementContainer = styled(Flex.Row)`
   align-self: flex-start;
 `;
 
-const Resizer = styled.div`
-  height: 3px;
-  border-bottom: 2px solid lightcoral;
-  cursor: row-resize;
-`;
-
 const Toolbar: React.FC = () => {
   const [showMacroBlock, setShowMacroBlock] = useState(false);
-  const [macroSize, setMacroSize] = useState(MACRO_MIN_HEIGHT);
   const [searchElementTag, setSearchElementTag] = useState<Option>({ label: 'Кнопка', value: 'button' });
   const [selectedItem, setSelectedItem] = useState<Element>();
 
@@ -68,14 +56,11 @@ const Toolbar: React.FC = () => {
         gap={5}
         horizontal={HorizontalAlign.right}
       >
-        <Select />
         <Button onClick={() => setShowMacroBlock(true)}>Создать макрос</Button>
       </Flex.Row>
       {
         showMacroBlock && (
-          <MacroCreator
-            macroSize={macroSize}
-          >
+          <MacroCreator>
             <Flex.Row
               horizontal={HorizontalAlign.right}
               flexInitial
@@ -112,14 +97,6 @@ const Toolbar: React.FC = () => {
                 }
               </SearchElementContainer>
             </Flex.Column>
-            <Resizer
-              onDrag={(e) => {
-                if (e.clientY > MACRO_MIN_HEIGHT && e.clientY < MACRO_MAX_HEIGHT) {
-                  setMacroSize(e.clientY);
-                }
-              }}
-              draggable
-            />
           </MacroCreator>
         )
       }
