@@ -16,6 +16,10 @@ class BaseStateStore {
   constructor() {
 
   }
+
+  public get isError() {
+    return this.isError;
+  }
 }
 
 export default BaseStateStore;
