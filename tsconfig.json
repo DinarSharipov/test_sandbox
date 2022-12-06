@@ -20,6 +20,13 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "paths": {
+    "@components": ["src/componensts"],
+    "@services": ["src/services"],
+    "@hooks": ["src/hooks"],
+    "@assets": ["src/assets"],
+    "@types": ["src/types"]
+  },
   "include": [
     "src"
   ]
