@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createGlobalStyle } from 'styled-components';
 import App from './App';
+import './index.css';
+import Input from './components/ui/Input/Input';
+import { extractStyles } from './services/utils';
 
 let root = document.getElementById('extRoot');
 
@@ -14,6 +17,8 @@ if (!root) {
 const createdRoot = ReactDOM.createRoot(
   root,
 );
+
+const a = true;
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -31,6 +36,9 @@ createdRoot.render(
     <button type="button">2</button>
     <button type="button">3</button>
     <button type="button">4</button>
-    <button type="button">5</button>
+    <Input classes={extractStyles(`
+      ${!a && 'bg-slate-500'}
+      p-[20px]`)}
+    />
   </React.StrictMode>,
 );
