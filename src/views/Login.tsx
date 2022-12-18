@@ -17,7 +17,7 @@ const Login: React.FC = () => (
       <Input placeholder="Введите имя пользователя" />
       <Input placeholder="Введите пароль" />
     </form>
-    <Button.Primary>Войти</Button.Primary>
+    <Button.Primary onClick={() => console.log(1)}>Войти</Button.Primary>
   </div>
 );
 
