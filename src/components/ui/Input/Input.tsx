@@ -1,16 +1,7 @@
 import React from 'react';
+import { InputProps } from './types';
 
-interface InputProps {
-  value?: string;
-  classes?: string;
-  required?: boolean;
-  readOnly?: boolean;
-  placeholder?: string;
-  label?: string;
-  id?: string;
-
-}
-
+/** Поле ввода */
 const Input: React.FC<InputProps> = ({
   readOnly,
   value,
