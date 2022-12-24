@@ -25,4 +25,4 @@ const Input: React.FC<InputProps> = ({
   </div>
 );
 
-export default Input;
+export default React.memo(Input);
